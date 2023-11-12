@@ -16,6 +16,7 @@ const NavigationBar = () => {
         <Nav className="mr-auto">
           <Nav.Link href="/">Inicio</Nav.Link>
           <Nav.Link href="/profile">Perfil</Nav.Link>
+          <Nav.Link href="/posts">Publicaciones</Nav.Link>
         </Nav>
       </Navbar.Collapse>
       <Navbar.Brand>

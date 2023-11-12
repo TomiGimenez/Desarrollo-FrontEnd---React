@@ -7,6 +7,7 @@ import Callback from "./Callback";
 import UserProfile from "./UserProfile";
 import NavigationBar from "./NavigationBar";
 import ProtectedRoute from "./ProtectedRoute";
+import Posts from "./Posts";
 
 const AppRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const AppRoutes = () => {
         <Route path="/profile" element={<ProtectedRoute />}>
           <Route index element={<UserProfile />} />
         </Route>
+        <Route path="/posts" element={<Posts />} />
       </Routes>
     </Router>
   );
