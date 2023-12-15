@@ -8,18 +8,18 @@ import ProductForm from "./ProductForm";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const ProductPage = () => {
-  const [products, setProducts] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const { getAccessTokenSilently } = useAuth0();
+  const [products, setProducts] = useState([]); // Guardar los productos a listar
+  const [showModal, setShowModal] = useState(false); // Estado para saber si el formulario modal esta cerrada o abierta
+  const [loading, setLoading] = useState(true); // Estado loading para saber si esta cargando el sitio
+  const [selectedProduct, setSelectedProduct] = useState(null); // Obtener el producto seleccionado
+  const { getAccessTokenSilently } = useAuth0(); // Devuelve los datos del token logueado
 
   const fetchProducts = async () => {
     try {
       const token = await getAccessTokenSilently();
 
       console.log("ID Token:", token);
-      let response = axios.get(
+      let response = await axios.get(
         "https://backend-productos.netlify.app/api/productos",
         {
           headers: {
@@ -27,15 +27,15 @@ const ProductPage = () => {
           },
         }
       );
-      setProducts(response.data);
-      setLoading(false);
-    } catch (error) {
+      setProducts(response.data); // Seteo los productos
+      setLoading(false); // Le digo que ya termino de cargar
+    } catch (error) { // En caso que exista un error
       toast.error("Hubo un error al cargar los productos");
       console.error(error);
       setLoading(false);
     }
   };
-
+  // Al cargar la pagina, ejecuta el metodo para cargar los productos
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -56,10 +56,18 @@ const ProductPage = () => {
     setShowModal(true);
   };
 
-  const handleDeleteClick = (product) => {
+  const handleDeleteClick = async (product) => {
+
+    const token = await getAccessTokenSilently();
+    
     axios
       .delete(
-        `https://backend-productos.netlify.app/api/productos/${product.id}`
+        `https://backend-productos.netlify.app/api/productos/${product.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       )
       .then(() => {
         toast.success("El producto se ha eliminado correctamente.");

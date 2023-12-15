@@ -7,6 +7,7 @@ import UserProfile from "../pages/User/UserProfilePage";
 import NavigationBar from "../components/NavigationBar";
 import ProtectedRoute from "../pages/User/ProtectedPage";
 import ProductoPage from "../pages/Product/ProductPage";
+import CategoryPage from "../pages/Product/CategoryPage";
 
 import { Container } from "react-bootstrap";
 const AppRoutes = () => {
@@ -25,6 +26,7 @@ const AppRoutes = () => {
           <Route path="/profile" element={<ProtectedRoute />}>
             <Route index element={<UserProfile />} />
           </Route>
+          <Route path="/categorias" element={<CategoryPage />} />
         </Routes>
       </Container>
     </Router>

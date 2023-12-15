@@ -7,8 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const root = createRoot(document.getElementById('root'));
 root.render(
   <Auth0Provider
-    domain="dev-utn-frc-iaew.auth0.com"
-    clientId="pTxG72WbxdD2ulX2nCXobCdyWQKN5XWo"
+    domain="dev-fu7cf42mzqb6q6dn.us.auth0.com"
+    clientId="2jcI0YXBhCjPEMKA6ScqsWqqCp8E28kO"
     authorizationParams={{
       redirect_uri: 'http://localhost:3000/callback'
     }}
